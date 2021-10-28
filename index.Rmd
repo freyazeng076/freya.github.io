@@ -1,0 +1,31 @@
+---
+title: "My awesome website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+---
+
+# This is freya's awesome website
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+link to useful things like 
+[p8105](https://www.p8105.com/making_websites.html)
+
+make an extra page on my site and link to that.
+Here's my [about](about.html) page
+
+
+## Here's Ted
+
+![](images/ted/jpg)
+
+
+<img src="images/image.jpg" style="width:75%">
+
+
+
+
+
+
