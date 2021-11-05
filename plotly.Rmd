@@ -1,84 +1,74 @@
 ---
-title: "My awesome website"
+title: "Plotly"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: cosmo
 ---
-This page is about making some plotly examples
+This page is about making some plots about NYC Restaurant Inspection Results
 
-```{r}
+Load packages
+```{r, encho = FALSE,Warming = FALSE}
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
 ```
 
-let's look at the NYC airbnb data
+Load the data
 ```{r}
-data("nyc_airbnb")
+data("rest_inspec")
+```
 
-nyc_airbnb = 
-  nyc_airbnb %>% 
-  mutate(rating = review_scores_location / 2) %>%
-  select(
-    neighbourhood_group, neighbourhood, rating, price, room_type, lat, long) %>%
-  filter(
-    !is.na(rating), 
-    neighbourhood_group == "Manhattan",
-    room_type == "Entire home/apt",
-    price %in% 100:500) %>% 
-  drop_na(rating)
+## Make a histogram about the number of grade A, B, and C restaurant 
+```{r}
+rest_inspec %>%
+  select(boro, grade) %>% 
+  filter(grade == c("A", "B", "C")) %>% 
+  group_by(boro, grade) %>% 
+  filter(boro !="Missing") %>% 
+  plot_ly(
+    x = ~boro, 
+    y = ~grade,
+    color = ~grade,
+    type = "bar",
+    colors = "viridis") 
 ```
 
 
-## Make a scatterplot
-
+## Make boxplot about the distribution of score of restaurant in different locations
 ```{r}
-nyc_airbnb %>% 
-  mutate(
-    text_label = str_c("Price:$", price, "\nRating:", rating)
-  ) %>% 
+rest_inspec %>% 
+  select(boro, score, grade) %>% 
+  group_by(boro) %>% 
+  filter(score != "NA",
+         grade == "A",
+         boro != "Missing") %>% 
   plot_ly(
-    x = ~lat, y = ~long, type = "scatter", mode = "markers",
-    color = ~price,
-    text = ~text_label,
-    alpha = .5  )
-```
-
-## Plotly boxplot
-
-```{r}
-nyc_airbnb %>% 
-  mutate(
-    neighbourhood = fct_reorder(neighbourhood, price) 
-  ) %>% 
-  plot_ly(
-    y = ~ price, color = ~ neighbourhood, type ="box",
+    y = ~score,
+    color =~boro,
+    type = "box",
     colors = "viridis"
   )
 ```
 
-## bar chart
 
+## Make a line plot about the number of Korean and American Restaurant in different locations
 ```{r}
-nyc_airbnb %>% 
-  count(neighbourhood) %>% 
-  mutate(neighbourhood = fct_reorder(neighbourhood, n)) %>% 
-  plot_ly(x = ~neighbourhood, y = ~n, color = ~neighbourhood, type = "bar", colors = "viridis")
-```
-
-## ggplotly
-```{r}
-gg_lat_long = 
-  nyc_airbnb %>% 
-  ggplot(
-    aes(
-      x= lat, 
-      y = long,
-      color = price)) +
-  geom_point()
-
-ggplotly(gg_lat_long)
+rest_inspec %>% 
+  select(boro, critical_flag, grade) %>% 
+  filter(boro == "MANHATTAN") %>% 
+  group_by(grade, critical_flag) %>% 
+  summarize(
+    count = n()
+  ) %>% 
+  filter(grade !="Not Yet Graded") %>% 
+  plot_ly(
+    x =~critical_flag,
+    y =~count,
+    color = ~grade,
+    type = "scatter",
+    mode = "marker"
+  )
 ```
 
