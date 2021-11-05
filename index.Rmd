@@ -1,31 +1,28 @@
 ---
-title: "My awesome website"
+title: "Yuanyuan Zeng"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: cosmo
 ---
+### This is Yuanyuan Zeng's personal website
 
-# This is freya's awesome website
+Name:Yuanyuan Zeng
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
-link to useful things like 
-[p8105](https://www.p8105.com/making_websites.html)
+Preferred Name: Freya
 
-make an extra page on my site and link to that.
-Here's my [about](about.html) page
+Nationality: China
 
+Hometown: Guangzhou, Guangdong
 
-## Here's Ted
+#### This is my cat:
 
-![](images/ted/jpg)
+He is one year old and likes sleeping
 
-
-<img src="images/image.jpg" style="width:75%">
+<img src="mycat.png" style="width:50%">
 
 
-
-
-
+### Academic experience
+I graduated in UC Davis with a bachelor's degree in Food Science. I am currently an MS student at Mailman School Of Public Health. Here is my [Resume](Resume.html) page.
 
