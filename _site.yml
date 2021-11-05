@@ -1,18 +1,18 @@
-name: "Yay internet!"
+name: "Yuanyuan Zeng"
 output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
-      href: about.html
+    - text: "Resume"
+      href: Resume.html
     - text: "Plotly"
       href: Plotly.html
-    - text: "Dashboard"
-      href: dashboard.html
     - icon: fa-envelope fa-lg
-      href: mailto:<you@youremail.com>
+      href: mailto:<uyyzeng@gmail.com>
     - icon: fa-github fa-lg
-      href: http://github.com/<freya>/
+      href: http://github.com/freyazeng076/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/yuanyuan-zeng-a54645193/
 output:
   html_document:
     theme: cerulean
